@@ -3,10 +3,8 @@ using NotesApp_2.Data.Entities;
 using NotesApp_2.Repositories;
 
 namespace NotesApp_2.Services;
-namespace NotesApp_2.Repositories;
 
-
-class NoteService
+class NoteService : INoteService
 {
     private readonly INoteRepository _noteRepo;
     private readonly ICategoryRepository _categoryRepo;
@@ -41,10 +39,5 @@ class NoteService
         };
     }
 
-    public async Task<List<Note>> GetAllNotesAsync()
-    {
-        
-    }
-    
-    public async Task<List<Note>> SearchNotesAsync(string searchTerm);
+    public async Task<List<Note>> GetAllNotesAsync() => await _noteRepo.GetAllWithCategoriesAsync();
 }
